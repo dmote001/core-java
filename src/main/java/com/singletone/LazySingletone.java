@@ -35,11 +35,38 @@ public class LazySingletone {
 
 }
 
+
+class Student{
+
+    private volatile static Student student;
+
+    private Student(){
+    }
+
+    public static Student getStudent(){
+
+        if(student == null){
+            synchronized (Student.class){
+                if(student == null) {
+                    student = new Student();
+                }
+            }
+        }
+        return student;
+    }
+}
+
 class main{
     public static void main(String[] args) {
 //            LazySingletone lazySingletone1 = new LazySingletone(); // compiletime error : can not instantiate as the constructor is private
         LazySingletone instance = LazySingletone.getInstance();
         LazySingletone instance1 = LazySingletone.getInstance();
+
+
+        Student student = Student.getStudent();
+        Student student1 = Student.getStudent();
+
+        System.out.println(student == student1);
 
         System.out.println(instance == instance1); // true
 
@@ -49,6 +76,7 @@ class main{
     }
 }
 /*
+Singletone - One object throughout the application context
 *  To make class singletone
 *
 * step 1 : static private ref of same class type.
