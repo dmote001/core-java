@@ -1,4 +1,4 @@
-package com.singletone;
+package com.design_patterns.creational.singletone;
 
 public class EagerSingletone {
     private static EagerSingletone instance = new EagerSingletone();

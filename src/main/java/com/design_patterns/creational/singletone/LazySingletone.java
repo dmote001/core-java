@@ -1,4 +1,6 @@
-package com.singletone;
+package com.design_patterns.creational.singletone;
+
+import org.slf4j.Logger;
 
 public class LazySingletone {
     private static LazySingletone instance;
@@ -26,9 +28,14 @@ public class LazySingletone {
 
     public synchronized static LazySingletone getDCLInstance() {
         if (dclInstance == null) {
+
+            System.out.println("something....");// t1 t2
+
             synchronized(LazySingletone.class){
                 dclInstance = new LazySingletone();
             }
+
+
         }
         return dclInstance;
     }
@@ -91,7 +98,7 @@ Singletone - One object throughout the application context
 * TO overcome this overhead make a Double-Checked Locking
 *
 
-
+Jvm examples : Runtime, Calendar, Logger
 *
 * /
  */
